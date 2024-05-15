@@ -1,0 +1,17 @@
+.listEl {
+  padding: 0.5rem;
+  border-bottom: 1px solid rgb(214, 214, 214);
+}
+
+.listEl p {
+  padding-right: 0.5rem;
+  display: inline;
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}

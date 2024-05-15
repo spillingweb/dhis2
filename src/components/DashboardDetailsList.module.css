@@ -1,0 +1,21 @@
+.details {
+  padding: 1rem;
+  padding-top: 0;
+}
+
+.content {
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.open {
+  display: block;
+}
+
+.closed {
+  display: none;
+}

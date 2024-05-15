@@ -1,0 +1,30 @@
+.dashboardHeader {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.star {
+  transition: transform .2s;
+}
+
+.star:hover {
+  transform: scale(1.2);
+}
+
+.chevron {
+  pointer-events: none;
+  margin-left: 1rem;
+  transform: rotate(0deg);
+  transition: transform 0.2s linear;
+}
+
+.open {
+  transform: rotate(180deg);
+  transition: transform 0.2s linear;
+}
