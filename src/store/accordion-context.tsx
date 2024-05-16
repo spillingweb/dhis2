@@ -1,4 +1,4 @@
-import { useState, createContext, useContext, ReactNode } from "react";
+import { useState, createContext, useContext } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 type AccordionContextType = {
