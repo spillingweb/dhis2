@@ -6,6 +6,7 @@
 .content {
   font-size: 0.75rem;
   margin: 0;
+  max-height: 0px;
 }
 
 .center {
@@ -13,9 +14,11 @@
 }
 
 .open {
-  display: block;
+  max-height: 1000px;
+  transition: max-height .5s ease-in;
 }
 
 .closed {
-  display: none;
+  max-height: 0px;
+  transition: max-height 0s;
 }

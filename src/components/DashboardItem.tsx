@@ -7,7 +7,7 @@ const DashboardItem: React.FC<{ id: string, title: string }> = ({ id, title }) =
   const { openDashboardId } = useAccordionContext();
 
   let className = `${classes.dashboard} ${
-    openDashboardId === id && classes.open
+    openDashboardId === id ? classes.open : ''
   }`;
 
   return <li className={className}>

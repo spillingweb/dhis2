@@ -1,10 +1,10 @@
-import { useState, createContext, useContext } from "react";
+import { useState, createContext, useContext, ReactNode } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 type AccordionContextType = {
   openDashboardId: string | null;
   toggleDashboard: (id: string) => void;
-  starredDashboards: string[],
+  starredDashboards: string[];
   setStarredDashboards: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
@@ -14,15 +14,17 @@ export function useAccordionContext() {
   const ctx = useContext(AccordionContext);
 
   if (!ctx) {
-      throw new Error(
-          "Accordion-related components must be wrapped by <AccordionContextProvider>"
-      );
+    throw new Error(
+      "Accordion-related components must be wrapped by <AccordionContextProvider>"
+    );
   }
 
   return ctx;
 }
 
-export default function AccordionContextProvider({children}: any) {
+const AccordionContextProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [openDashboardId, setOpenDashboardId] = useState<string | null>(null);
   const [starredDashboards, setStarredDashboards] = useLocalStorage();
 
@@ -34,12 +36,14 @@ export default function AccordionContextProvider({children}: any) {
     openDashboardId,
     toggleDashboard,
     starredDashboards,
-    setStarredDashboards
+    setStarredDashboards,
   };
 
   return (
     <AccordionContext.Provider value={contextValue}>
-        {children}
+      {children}
     </AccordionContext.Provider>
-  )
+  );
 };
+
+export default AccordionContextProvider;
