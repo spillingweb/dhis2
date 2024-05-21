@@ -9,7 +9,7 @@ const DashboardHeader: React.FC<{ title: string; id: string }> = ({
   const { openDashboardId, toggleDashboard } = useAccordionContext();
   const { starredDashboards, setStarredDashboards } = useAccordionContext();
 
-  function handleStarClick(e: React.MouseEvent, id: string) {
+  function handleStarClick(e: React.MouseEvent | React.KeyboardEvent, id: string) {
     e.stopPropagation();
     setStarredDashboards((prevArray) => {
       if (prevArray.includes(id)) {
@@ -37,11 +37,28 @@ const DashboardHeader: React.FC<{ title: string; id: string }> = ({
     >
       <h2 className={classes.title}>{title}</h2>
       <div>
-        <span aria-label="Star Icon" onClick={(e) => handleStarClick(e, id)}>
-          {isStarred ? <BsStarFill /> : <BsStar />}
+        <span
+          tabIndex={0}
+          aria-label="Star Icon"
+          onClick={(e) => handleStarClick(e, id)}
+          onKeyDown={(e) =>
+            e.key === "Enter" ? handleStarClick(e, id) : undefined
+          }
+        >
+          {isStarred ? (
+            <BsStarFill
+              title="Remove from favorites"
+              className={classes.star}
+            />
+          ) : (
+            <BsStar title="Add to favorites" className={classes.star} />
+          )}
         </span>
         <span aria-label="Arrow Icon">
-          <BsChevronDown className={classChevron}/>
+          <BsChevronDown
+            title={openDashboardId === id ? "Collapse" : "Expand"}
+            className={classChevron}
+          />
         </span>
       </div>
     </div>

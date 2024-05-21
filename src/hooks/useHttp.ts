@@ -23,7 +23,6 @@ export default function useHttp(url : string, filter: string) {
       setIsFetching(true);
       try {
         const resData = await sendHttpRequest(url);
-        console.log('sendt an http request!', resData[filter]);
         setData(resData[filter]);
       } catch (error) {
         setError("There was a problem fetching data from the DHIS2 API");

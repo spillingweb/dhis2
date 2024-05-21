@@ -30,7 +30,3 @@
   border: none;
   cursor: pointer;
 }
-
-.filter select:focus {
-  outline: none;
-}
