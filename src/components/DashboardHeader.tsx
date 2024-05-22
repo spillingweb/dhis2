@@ -9,7 +9,11 @@ const DashboardHeader: React.FC<{ title: string; id: string }> = ({
   const { openDashboardId, toggleDashboard } = useAccordionContext();
   const { starredDashboards, setStarredDashboards } = useAccordionContext();
 
-  function handleStarClick(e: React.MouseEvent | React.KeyboardEvent, id: string) {
+  // Add or remove favorites from browser local storage on mouse click or Enter key on focus
+  function handleStarClick(
+    e: React.MouseEvent | React.KeyboardEvent,
+    id: string
+  ) {
     e.stopPropagation();
     setStarredDashboards((prevArray) => {
       if (prevArray.includes(id)) {
@@ -20,15 +24,17 @@ const DashboardHeader: React.FC<{ title: string; id: string }> = ({
     });
   }
 
-  let isStarred = false;
-
-  if (starredDashboards && starredDashboards.includes(id)) {
-    isStarred = true;
-  }
-
+  // Conditional className arrow up/down depending on active status
   const classChevron = `${classes.chevron} ${
     openDashboardId === id ? classes.open : ""
   }`;
+
+  // Star Icon with or without fill depending on local storage status
+  const starIcon = starredDashboards.includes(id) ? (
+    <BsStarFill title="Remove from favorites" className={classes.star} />
+  ) : (
+    <BsStar title="Add to favorites" className={classes.star} />
+  );
 
   return (
     <div
@@ -45,14 +51,7 @@ const DashboardHeader: React.FC<{ title: string; id: string }> = ({
             e.key === "Enter" ? handleStarClick(e, id) : undefined
           }
         >
-          {isStarred ? (
-            <BsStarFill
-              title="Remove from favorites"
-              className={classes.star}
-            />
-          ) : (
-            <BsStar title="Add to favorites" className={classes.star} />
-          )}
+          {starIcon}
         </span>
         <span aria-label="Arrow Icon">
           <BsChevronDown

@@ -3,9 +3,9 @@ import { FilterContext, FilterContextType } from "../store/filter-context";
 import classes from "./MainHeader.module.css";
 
 const MainHeader: React.FC = () => {
-  const typesArray = ["All Types", "Visualization", "Map", "Text", "Messages"];
-
   const { onFilter } = useContext(FilterContext) as FilterContextType;
+  
+  const typesArray = ["All Types", "Visualization", "Map", "Text", "Messages"];
 
   return (
     <div className={classes["header-container"]}>

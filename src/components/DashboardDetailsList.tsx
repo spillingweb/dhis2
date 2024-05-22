@@ -18,13 +18,15 @@ interface dashboardItemType {
 const DashboardDetailsList: React.FC<{ id: string }> = ({ id }) => {
   const { openDashboardId } = useAccordionContext();
 
+  // Fetch dashboard details from API
   const {
     data: dashboardDetails,
     isFetching,
     error,
   } = useHttp<dashboardItemType>("dashboardItems", id);
 
-  let className = `${classes.content} ${
+  // Conditional className depending on active status
+  let detailsClass = `${classes.content} ${
     openDashboardId === id ? classes.open : classes.closed
   }`;
 
@@ -45,7 +47,7 @@ const DashboardDetailsList: React.FC<{ id: string }> = ({ id }) => {
   }
 
   return (
-    <div className={className}>
+    <div className={detailsClass}>
       {dashboardDetails.length > 0 && (
         <ul className={classes.details}>
           {dashboardDetails.map((item) => (
@@ -62,11 +64,6 @@ const DashboardDetailsList: React.FC<{ id: string }> = ({ id }) => {
             />
           ))}
         </ul>
-      )}
-      {dashboardDetails.length === 0 && (
-        <div className={classes.center}>
-          <h2>There was a problem fetching the data from the DHIS2 API</h2>
-        </div>
       )}
     </div>
   );

@@ -9,16 +9,17 @@ const DashboardItem: React.FC<{ id: string; title: string }> = ({
 }) => {
   const { openDashboardId, toggleDashboard } = useAccordionContext();
 
-  let className = `${classes.dashboard} ${
+  // Conditional className depending on active status
+  let itemClass = `${classes.dashboard} ${
     openDashboardId === id ? classes.open : ""
-  }`;
+  }`;  
 
   return (
     <li
-      className={className}
+      className={itemClass}
       tabIndex={0}
       id={id}
-      onKeyDown={(e) => (e.key === "Enter" ? toggleDashboard(id) : undefined)}
+      onKeyDown={(e) => (e.key === "Enter" ? toggleDashboard(id) : undefined)} 
     >
       <DashboardHeader title={title} id={id} />
       <DashboardDetailsList id={id} />

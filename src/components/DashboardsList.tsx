@@ -10,12 +10,14 @@ interface dashboardType {
 }
 
 const DashboardsList: React.FC = () => {
+  // Fetch dashboard data
   const {
     data: dashboards,
     error,
     isFetching,
   } = useHttp<dashboardType>("dashboards");
 
+  // Open first dashboard on load
   const { toggleDashboard } = useAccordionContext();
 
   useEffect(() => {
