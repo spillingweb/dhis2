@@ -3,6 +3,18 @@ import DashboardDetailsItem from "./DashboardDetailsItem";
 import { useAccordionContext } from "../store/accordion-context";
 import useHttp from "../hooks/useHttp";
 
+interface dashboardItemType {
+  id: string;
+  type: string;
+  text?: string;
+  map?: {
+    name: string;
+  };
+  visualization?: {
+    name: string;
+  };
+}
+
 const DashboardDetailsList: React.FC<{ id: string }> = ({ id }) => {
   const { openDashboardId } = useAccordionContext();
 
@@ -10,10 +22,7 @@ const DashboardDetailsList: React.FC<{ id: string }> = ({ id }) => {
     data: dashboardDetails,
     isFetching,
     error,
-  } = useHttp(
-    `https://gist.githubusercontent.com/kabaros/da79636249e10a7c991a4638205b1726/raw/fa044f54e7a5493b06bb51da40ecc3a9cb4cd3a5/${id}.json`,
-    "dashboardItems"
-  );
+  } = useHttp<dashboardItemType>("dashboardItems", id);
 
   let className = `${classes.content} ${
     openDashboardId === id ? classes.open : classes.closed
@@ -45,10 +54,10 @@ const DashboardDetailsList: React.FC<{ id: string }> = ({ id }) => {
               type={item.type}
               // prettier-ignore
               text={
-                item.type === "TEXT" ? item.text
-                  : item.type === "VISUALIZATION" ? item.visualization.name
-                  : item.type === "MAP" ? item.map.name
-                  : null
+                item.type === "TEXT" ? item.text!
+                  : item.type === "VISUALIZATION" ? item.visualization!.name
+                  : item.type === "MAP" ? item.map!.name
+                  : ''
               }
             />
           ))}

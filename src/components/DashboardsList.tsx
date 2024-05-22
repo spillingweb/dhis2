@@ -4,23 +4,25 @@ import useHttp from "../hooks/useHttp";
 import { useAccordionContext } from "../store/accordion-context";
 import { useEffect } from "react";
 
+interface dashboardType {
+  displayName: string;
+  id: string;
+}
+
 const DashboardsList: React.FC = () => {
   const {
     data: dashboards,
     error,
     isFetching,
-  } = useHttp(
-    "https://gist.githubusercontent.com/kabaros/da79636249e10a7c991a4638205b1726/raw/fa044f54e7a5493b06bb51da40ecc3a9cb4cd3a5/dashboards.json",
-    "dashboards"
-  );
+  } = useHttp<dashboardType>("dashboards");
 
-  const {toggleDashboard} = useAccordionContext();
+  const { toggleDashboard } = useAccordionContext();
 
   useEffect(() => {
     if (dashboards.length > 0 && !error) {
       toggleDashboard(dashboards[0].id);
     }
-  }, [dashboards])
+  }, [dashboards]);
 
   if (isFetching) {
     return (
