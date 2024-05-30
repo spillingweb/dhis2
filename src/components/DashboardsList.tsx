@@ -1,5 +1,5 @@
 import DashboardItem from "./DashboardItem";
-import classes from "./DashboardsList.module.css";
+import classes from "../styling/DashboardsList.module.css";
 import useHttp from "../hooks/useHttp";
 import { useAccordionContext } from "../store/accordion-context";
 import { useEffect } from "react";

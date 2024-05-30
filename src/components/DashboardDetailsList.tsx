@@ -1,5 +1,5 @@
-import classes from "./DashboardDetailsList.module.css";
 import DashboardDetailsItem from "./DashboardDetailsItem";
+import classes from "../styling/DashboardDetailsList.module.css";
 import { useAccordionContext } from "../store/accordion-context";
 import useHttp from "../hooks/useHttp";
 

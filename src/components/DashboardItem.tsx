@@ -1,5 +1,5 @@
 import { useAccordionContext } from "../store/accordion-context";
-import classes from "./DashboardItem.module.css";
+import classes from "../styling/DashboardItem.module.css";
 import DashboardHeader from "./DashboardHeader";
 import DashboardDetailsList from "./DashboardDetailsList";
 
@@ -9,7 +9,7 @@ const DashboardItem: React.FC<{ id: string; title: string }> = ({
 }) => {
   const { openDashboardId, toggleDashboard } = useAccordionContext();
 
-  // Conditional className depending on active status
+  // // Conditional className depending on active status
   let itemClass = `${classes.dashboard} ${
     openDashboardId === id ? classes.open : ""
   }`;  
