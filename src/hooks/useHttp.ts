@@ -15,7 +15,7 @@ async function sendGetRequest<T>(url: string, filter: string) {
 }
 
 export default function useHttp<T>(filter: string, id?: string) {
-  const [data, setData] = useState<T[]>([]);
+  const [data, setData] = useState<T[] | null>(null);
   const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState("");
 

@@ -21,37 +21,35 @@ const DashboardsList: React.FC = () => {
   const { toggleDashboard } = useAccordionContext();
 
   useEffect(() => {
-    if (dashboards.length > 0 && !error) {
+    if (dashboards && dashboards.length > 0) {
       toggleDashboard(dashboards[0].id);
     }
   }, [dashboards]);
 
-  if (isFetching) {
-    return (
-      <div className={classes.center}>
-        <p>Loading DHIS2 Dashboards...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className={classes.center}>
-        <p>{error}</p>
-      </div>
-    );
-  }
-
   return (
-    <ul className={classes.dashboardList}>
-      {dashboards.map((dashboard) => (
-        <DashboardItem
-          key={dashboard.id}
-          id={dashboard.id}
-          title={dashboard.displayName}
-        />
-      ))}
-    </ul>
+    <>
+      {isFetching && (
+        <div className={classes.center}>
+          <p>Loading DHIS2 Dashboards...</p>
+        </div>
+      )}
+      {error && (
+        <div className={classes.center}>
+          <p>{error}</p>
+        </div>
+      )}
+      {dashboards && (
+        <ul className={classes.dashboardList}>
+          {dashboards.map((dashboard) => (
+            <DashboardItem
+              key={dashboard.id}
+              id={dashboard.id}
+              title={dashboard.displayName}
+            />
+          ))}
+        </ul>
+      )}
+    </>
   );
 };
 
