@@ -1,4 +1,4 @@
-import classes from "../styling/DashboardHeader.module.css";
+import classes from "./cssModules/DashboardHeader.module.css";
 import { useAccordionContext } from "../store/accordion-context";
 import { BsStarFill, BsStar, BsChevronDown } from "react-icons/bs";
 

@@ -5,7 +5,7 @@ import AccordionContextProvider from "../store/accordion-context";
 
 describe("Dashboard List component", () => {
   // Test if dashboard cards are being rendered correctly
-  test("renders cards if request succeeds", async () => {
+  test("renders mocked dashboard if fetch request succeeds", async () => {
     // Arrange
     render(
       <AccordionContextProvider>
@@ -15,8 +15,8 @@ describe("Dashboard List component", () => {
 
     // Assert
     const listItemElements = await screen.findAllByRole("listitem");
-    expect(listItemElements).not.toHaveLength(0);
+    expect(listItemElements).toHaveLength(1); // length of mocked response
   });
 
-  //
+  // Test if first dashboard is opened on load
 });

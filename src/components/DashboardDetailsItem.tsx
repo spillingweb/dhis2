@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { FilterContext, FilterContextType } from '../store/filter-context';
-import classes from '../styling/DashboardDetailsItem.module.css';
+import classes from './cssModules/DashboardDetailsItem.module.css';
 import { BsFileBarGraph, BsGlobe2, BsGraphDown, BsFileText } from 'react-icons/bs';
 
 const DashboardDetailsItem: React.FC<{ type: string, text: string }> = ({ type, text }) => {

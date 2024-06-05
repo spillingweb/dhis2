@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { FilterContext, FilterContextType } from "../store/filter-context";
-import classes from "../styling/MainHeader.module.css";
+import classes from "./cssModules/MainHeader.module.css";
 
 const MainHeader: React.FC = () => {
   const { onFilter } = useContext(FilterContext) as FilterContextType;
