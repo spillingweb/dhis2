@@ -6,11 +6,10 @@
   animation: animate-in 1s ease-out forwards;
   overflow: hidden;
   background: white;
-  border: 2px solid transparent;
 }
 
-.open {
-  border: 2px solid dodgerblue;
+.active {
+  outline: 2px solid dodgerblue;
 }
 
 @keyframes animate-in {

@@ -1,6 +1,5 @@
 import DashboardDetailsItem from "./DashboardDetailsItem";
 import classes from "./cssModules/DashboardDetailsList.module.css";
-import { useAccordionContext } from "../store/accordion-context";
 import useHttp from "../hooks/useHttp";
 
 interface dashboardItemType {
@@ -15,20 +14,13 @@ interface dashboardItemType {
   };
 }
 
-const DashboardDetailsList: React.FC<{ id: string }> = ({ id }) => {
-  const { openDashboardId } = useAccordionContext();
-
+const DashboardDetailsList: React.FC<{ id: string, isOpen: boolean }> = ({ id, isOpen }) => {
   // Fetch dashboard details from API
   const {
     data: dashboardDetails,
     isFetching,
     error,
   } = useHttp<dashboardItemType>("dashboardItems", id);
-
-  // Conditional className depending on active status
-  let detailsClass = `${classes.content} ${
-    openDashboardId === id ? classes.open : classes.closed
-  }`;
 
   return (
     <>
@@ -43,7 +35,7 @@ const DashboardDetailsList: React.FC<{ id: string }> = ({ id }) => {
         </div>
       )}
       {dashboardDetails && (
-        <div className={detailsClass}>
+        <div className={`${classes.content} ${isOpen ? classes.open : ''}`}>
           {dashboardDetails.length > 0 && (
             <ul className={classes.details}>
               {dashboardDetails.map((item) => (

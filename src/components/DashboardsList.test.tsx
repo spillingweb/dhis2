@@ -17,6 +17,4 @@ describe("Dashboard List component", () => {
     const listItemElements = await screen.findAllByRole("listitem");
     expect(listItemElements).toHaveLength(1); // length of mocked response
   });
-
-  // Test if first dashboard is opened on load
 });

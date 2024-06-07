@@ -17,15 +17,6 @@ const DashboardsList: React.FC = () => {
     isFetching,
   } = useHttp<dashboardType>("dashboards");
 
-  // Open first dashboard on load
-  const { toggleDashboard } = useAccordionContext();
-
-  useEffect(() => {
-    if (dashboards && dashboards.length > 0) {
-      toggleDashboard(dashboards[0].id);
-    }
-  }, [dashboards]);
-
   return (
     <>
       {isFetching && (
@@ -40,9 +31,10 @@ const DashboardsList: React.FC = () => {
       )}
       {dashboards && (
         <ul className={classes.dashboardList}>
-          {dashboards.map((dashboard) => (
+          {dashboards.map((dashboard, index) => (
             <DashboardItem
               key={dashboard.id}
+              index={index}
               id={dashboard.id}
               title={dashboard.displayName}
             />
