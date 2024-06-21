@@ -14,7 +14,10 @@ interface dashboardItemType {
   };
 }
 
-const DashboardDetailsList: React.FC<{ id: string, isOpen: boolean }> = ({ id, isOpen }) => {
+const DashboardDetailsList: React.FC<{ id: string; isOpen: boolean }> = ({
+  id,
+  isOpen,
+}) => {
   // Fetch dashboard details from API
   const {
     data: dashboardDetails,
@@ -35,7 +38,10 @@ const DashboardDetailsList: React.FC<{ id: string, isOpen: boolean }> = ({ id, i
         </div>
       )}
       {dashboardDetails && (
-        <div className={`${classes.content} ${isOpen ? classes.open : ''}`}>
+        <div
+          role="dashboardDetails"
+          className={`${classes.content} ${isOpen ? classes.open : ""}`}
+        >
           {dashboardDetails.length > 0 && (
             <ul className={classes.details}>
               {dashboardDetails.map((item) => (

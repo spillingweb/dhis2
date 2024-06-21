@@ -11,7 +11,7 @@ const DashboardItem: React.FC<{ index: number, id: string; title: string }> = ({
 }) => {
   const { openDashboardId, toggleDashboard } = useAccordionContext();
 
-  let isActive = openDashboardId === id;
+  const isActive = openDashboardId === id;
 
   // Open first dashboard on load
   useEffect(() => {
@@ -26,6 +26,7 @@ const DashboardItem: React.FC<{ index: number, id: string; title: string }> = ({
       tabIndex={0}
       id={id}
       onKeyDown={(e) => (e.key === "Enter" ? toggleDashboard(id) : undefined)} 
+      role="dashboardItem"
     >
       <DashboardHeader title={title} id={id} />
       <DashboardDetailsList id={id} isOpen={isActive} />

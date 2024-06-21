@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 function getStarredDashboards(): string[] {
   const starred = localStorage.getItem("starredDashboards");
   if (starred) {
-    const starredDashboards = JSON.parse(starred);
+    const starredDashboards: string[] = JSON.parse(starred);
     return starredDashboards;
   }
   return [];

@@ -22,7 +22,7 @@ const DashboardDetailsItem: React.FC<{ type: string, text: string }> = ({ type, 
     }
     
     return (
-        <li className={listElClass}>
+        <li className={listElClass} role={`${type.toLowerCase()}Item`}>
             <p>{icon}</p>
             <p>{text}</p>
         </li>

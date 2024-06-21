@@ -14,7 +14,7 @@ const DashboardHeader: React.FC<{ title: string; id: string }> = ({
     e: React.MouseEvent | React.KeyboardEvent,
     id: string
   ) {
-    e.stopPropagation();
+    e.stopPropagation(); // prevents dashboard from collapsing/opening
     setStarredDashboards((prevArray) => {
       if (prevArray.includes(id)) {
         return prevArray.filter((item) => item !== id);
@@ -23,11 +23,6 @@ const DashboardHeader: React.FC<{ title: string; id: string }> = ({
       }
     });
   }
-
-  // Conditional className arrow up/down depending on active status
-  const classChevron = `${classes.chevron} ${
-    openDashboardId === id ? classes.open : ""
-  }`;
 
   // Star Icon with or without fill depending on local storage status
   const starIcon = starredDashboards.includes(id) ? (
@@ -38,6 +33,7 @@ const DashboardHeader: React.FC<{ title: string; id: string }> = ({
 
   return (
     <div
+      role="dashboardHeader"
       className={classes.dashboardHeader}
       onClick={() => toggleDashboard(id)}
     >
@@ -56,7 +52,9 @@ const DashboardHeader: React.FC<{ title: string; id: string }> = ({
         <span aria-label="Arrow Icon">
           <BsChevronDown
             title={openDashboardId === id ? "Collapse" : "Expand"}
-            className={classChevron}
+            className={`${classes.chevron} ${
+              openDashboardId === id ? classes.open : ""
+            }`}
           />
         </span>
       </div>

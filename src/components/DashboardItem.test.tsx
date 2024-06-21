@@ -3,10 +3,10 @@ import userEvent from "@testing-library/user-event";
 import { describe } from "vitest";
 import DashboardsList from "./DashboardsList";
 import AccordionContextProvider from "../store/accordion-context";
-import FilterContextProvider from "../store/filter-context";
 import classes from "./cssModules/DashboardDetailsList.module.css";
+import FilterContextProvider from "../store/filter-context";
 
-describe("Dashboard List component", () => {
+describe("Dashboard Item component", () => {
   const setup = () => {
     return {
       user: userEvent.setup(),
@@ -22,27 +22,30 @@ describe("Dashboard List component", () => {
 
   beforeEach(() => {});
 
-  test("renders mocked dashboard if fetch request succeeds", async () => {
-    setup();
-
-    const dashboardItemElements = await screen.findAllByRole("dashboardItem");
-    expect(dashboardItemElements).toHaveLength(1); // length of mocked response
-  });
-
-  test("renders details of first card on load", async () => {
+  test("opens details of first card on load", async () => {
     setup();
 
     const detailsText = await screen.findByRole("dashboardDetails");
     expect(detailsText).toHaveClass(classes.open);
   });
 
-  test("dashboard details are hidden on click", async () => {
+  test("can focus on dashboard by pressing tab", async () => {
     const {user} = setup();
 
-    const dashboardHeader = await screen.findByRole("dashboardHeader");
-    await user.click(dashboardHeader);
+    const dashboard = await screen.findByRole("dashboardItem");
+    await user.tab();
+
+    expect(dashboard).toHaveFocus();
+  });
+
+  test("can closed focused dashboard by clicking enter", async () => {
+    const { user } = setup();
+
+    const dashboard = await screen.findByRole("dashboardItem");
+    dashboard.focus();
+    await user.keyboard('{Enter}');
 
     const detailsText = screen.getByRole("dashboardDetails");
     expect(detailsText).not.toHaveClass(classes.open);
-  });
+  })
 });

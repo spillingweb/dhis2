@@ -17,8 +17,3 @@
   max-height: 1000px;
   transition: max-height .5s ease-in;
 }
-
-.closed {
-  max-height: 0px;
-  transition: max-height 0s;
-}

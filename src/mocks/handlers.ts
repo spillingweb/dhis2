@@ -24,7 +24,14 @@ export const handlers = [
             id: "someIdAgain",
             type: "VISUALIZATION",
             visualization: {
-              name: "Mocked dashboardDetails",
+              name: "Mocked dashboardDetails Visualization",
+            },
+          },
+          {
+            id: "someOtherId",
+            type: "MAP",
+            map: {
+              name: "Mocked dashboardDetails Map",
             },
           },
         ],
