@@ -8,4 +8,4 @@ The app includes functionality for starring the different cards and saving the s
 The official DHIS2 UI library was not used for this project, all styles are made from basic CSS, in addition to some imported icons from the React Icons library. The default DHIS2 font Roboto was used.
 
 ## Deployed application
-https://spillingweb-dhis2.netlify.app/
+https://dhis2.spillingweb.com/
