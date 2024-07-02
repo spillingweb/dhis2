@@ -1,0 +1,33 @@
+on: 
+  push:
+    branches:
+      - master
+name: 🚀 Deploy website on push
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js 14
+        uses: actions/setup-node@v4
+        with:
+          node-version: "14"
+
+      - name: 🔨 Build Project
+        run: |
+          npm install
+          npm run build
+      - name: List output files
+        run: find dist/ -print
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: spillingweb.com
+          username: spillin1
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: dist/
+          server-dir: dhis2.spillingweb.com/
